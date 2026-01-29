@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Ditemukan</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Item Ditemukan</h1>
+    </header>
+    
+    <nav>
+        <a href="index.html">Beranda</a>
+        <a href="report-lost.html">Lapor Hilang</a>
+        <a href="found-items.html">Item Ditemukan</a>
+        <a href="gallery.html">Galeri</a>
+        <a href="contact.html">Kontak</a>
+    </nav>
+    
+    <section>
+        <h2>Daftar Item Ditemukan</h2>
+        <input type="text" id="search" placeholder="Cari item..." onkeyup="filterTable()">
+        <table id="items-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Deskripsi</th>
+                    <th>Tanggal Ditemukan</th>
+                    <th>Kontak</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Ransel</td>
+                    <td>Biru, dengan stiker</td>
+                    <td>2023-10-01</td>
+                    <td>kantorsekolah@example.com</td>
+                </tr>
+                <tr>
+                    <td>HP</td>
+                    <td>iPhone, case hitam</td>
+                    <td>2023-10-05</td>
+                    <td>kantorsekolah@example.com</td>
+                </tr>
+                <!-- Tambahkan lebih banyak baris sesuai kebutuhan -->
+            </tbody>
+        </table>
+    </section>
+    
+    <footer>
+        &copy; 2023 Lost And Found In School.
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

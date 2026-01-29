@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lapor Item Hilang</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Lapor Item Hilang</h1>
+    </header>
+    
+    <nav>
+        <a href="index.html">Beranda</a>
+        <a href="report-lost.html">Lapor Hilang</a>
+        <a href="found-items.html">Item Ditemukan</a>
+        <a href="gallery.html">Galeri</a>
+        <a href="contact.html">Kontak</a>
+    </nav>
+    
+    <section>
+        <h2>Formulir Laporan Item Hilang</h2>
+        <form onsubmit="return validateForm()">
+            <input type="text" id="item" placeholder="Nama Item (contoh: Buku Tulis)" required>
+            <textarea placeholder="Deskripsi (warna, ukuran, dll.)" required></textarea>
+            <select required>
+                <option value="">Kategori</option>
+                <option value="elektronik">Elektronik</option>
+                <option value="pakaian">Pakaian</option>
+                <option value="alat-tulis">Alat Tulis</option>
+            </select>
+            <input type="date" placeholder="Tanggal Hilang" required>
+            <input type="email" id="email" placeholder="Email Anda" required>
+            <button type="submit">Kirim Laporan</button>
+        </form>
+    </section>
+    
+    <footer>
+        &copy; 2023 Lost And Found In School.
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>
