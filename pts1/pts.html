@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Lost And Found In School</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace; /* Font futuristik */
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #000000, #001122); /* Gradien gelap */
+            color: #00ffff; /* Neon cyan */
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0,255,255,0.1) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        header {
+            background: linear-gradient(90deg, #000000, #003366);
+            color: #00ff00; /* Neon green */
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 0 20px #00ffff;
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 20px #00ffff; }
+            to { box-shadow: 0 0 30px #00ff00; }
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+            text-shadow: 0 0 10px #00ffff;
+            animation: typing 3s steps(30, end);
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        nav {
+            background: rgba(0,0,0,0.8);
+            padding: 15px;
+            text-align: center;
+            border-bottom: 2px solid #00ffff;
+        }
+        nav button {
+            background: #001122;
+            color: #00ffff;
+            border: 1px solid #00ffff;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        nav button:hover {
+            background: #00ffff;
+            color: #000;
+            box-shadow: 0 0 15px #00ffff;
+        }
+        .section {
+            display: none;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 30px;
+            background: rgba(0,0,0,0.9);
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+            box-shadow: 0 0 20px #00ff00;
+            animation: slideIn 0.5s ease-in;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .section.active { display: block; }
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        input, textarea, select, button {
+            margin: 15px 0;
+            padding: 15px;
+            border: 1px solid #00ffff;
+            border-radius: 5px;
+            background: #001122;
+            color: #00ffff;
+            font-family: inherit;
+        }
+        button {
+            background: #00ff00;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: #00ffff;
+            box-shadow: 0 0 15px #00ff00;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(0,0,0,0.8);
+        }
+        th, td {
+            border: 1px solid #00ffff;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background: #003366;
+            color: #00ff00;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+        .gallery img {
+            width: 250px;
+            height: 200px;
+            object-fit: cover;
+            border: 2px solid #00ffff;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .gallery img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #00ff00;
+        }
+        .slideshow {
+            position: relative;
+            max-width: 800px;
+            margin: 20px auto;
+            overflow: hidden;
+            border: 2px solid #00ff00;
+            border-radius: 10px;
+        }
+        .slideshow img {
+            width: 100%;
+            display: none;
+        }
+        .slideshow img.active {
+            display: block;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.9);
+            color: #00ffff;
+            border-top: 2px solid #00ff00;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Lost And Found In School</h1>
+        <p>Lost & Found in School, solusi mudah untuk menemukan kembali barang yang hilang di sekolah.</p>
+    </header>
+    
+    <nav>
+        <button onclick="showSection('home')">Home</button>
+        <button onclick="showSection('report')">Report Lost</button>
+        <button onclick="showSection('found')">Found Items</button>
+        <button onclick="showSection('gallery')">Gallery</button>
+        <button onclick="showSection('contact')">Contact</button>
+    </nav>
+    
+    <div id="home" class="section active">
+        <h2>Selamat Datang di pusat Barang</h2>
+        <p>Di halaman ini, kamu bisa melaporkan barang yang hilang atau mengambil barang yang ditemukan. Tersedia fitur laporan online, pencarian data barang, galeri foto, dan kontak cepat.</p>
+        <p><strong>Fitur Utama:</strong> Pencarian berbasis AI, notifikasi neon, dan visual yang imersif.</p>
+    </div>
+    
+    <div id="report" class="section">
+        <h2>Laporkan Barang Hilang</h2>
+        <form onsubmit="return validateForm()">
+            <input type="text" id="item" placeholder="Nama Barang (misalnya, Perangkat Kuantum)" required>
+            <textarea placeholder="Deskripsi (warna, ukuran, tanda energi)" required></textarea>
+            <select required>
+                <option value="">Kategori</option>
+                <option value="tech">Perangkat Teknologi</option>
+                <option value="clothing">Pakaian Holografik</option>
+                <option value="tools">Alat Digital</option>
+            </select>
+            <input type="date" placeholder="Tanggal Hilang" required>
+            <input type="email" id="email" placeholder="Neural Link Anda (Email)" required>
+            <button type="submit">Kirim Laporan</button>
+        </form>
+    </div>
+    
+    <div id="found" class="section">
+        <h2>Database Barang Ditemukan</h2>
+        <input type="text" id="search" placeholder="Cari di sini..." onkeyup="filterTable()">
+        <table id="items-table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Deskripsi</th>
+                    <th>Tanggal Ditemukan</th>
+                    <th>Kontak</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tas ransel</td>
+                    <td>Tas warna hitam merek Eiger, terdapat gantungan kunci</td>
+                    <td>18 Januari 2026</td>
+                    <td>siswa01@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>Buku tulis</td>
+                    <td>Buku tulis garis, sampul biru, tertulis nama di halaman depan</td>
+                    <td>19 Januari 2026</td>
+                    <td>belajar.smp@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>Botol minum</td>
+                    <td>Botol minum warna merah, tutup putih</td>
+                    <td>20 Januari 2026</td>
+                    <td>muridkelas7@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>Flashdisk</td>
+                    <td>Flashdisk hitam 16GB, ada gantungan kecil</td>
+                    <td>22 Januari 2026</td>
+                    <td>data.sekolah@gmail.com/td>
+                </tr>
+                <!-- Tambah lebih banyak untuk ukuran besar -->
+                <tr>
+                    <td>Jaket</td>
+                    <td>Jaket abu-abu, ukuran M, tanpa topi</td>
+                    <td>21 Januari 2026</td>
+                    <td>pemilik.jaket@gmail.com</td>
+                </tr>
+                <tr>
+                    <td>cas hp</td>
+                    <td>putih, by xiomi 33W </td>
+                    <td>30 Januari 2026</td>
+                    <td>kelvingymnatio@gmail.com</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div id="gallery" class="section">
+        <h2>barang temuan</h2>
+        <div class="gallery">
+            <img src="Gemini_Generated_Image_7tzi4h7tzi4h7tzi.png" alt="Tas ransel">
+            <img src="Gemini_Generated_Image_qhvee1qhvee1qhve.png" alt="Buku tulis">
+            <img src="Gemini_Generated_Image_m8r65bm8r65bm8r6.png" alt="Botol minum">
+            <img src="Gemini_Generated_Image_7ip04w7ip04w7ip0.png" alt="Flashdisk">
+            <img src="Gemini_Generated_Image_3mvy953mvy953mvy.png" alt="Jaket">
+            <img src="Gemini_Generated_Image_f6yjeef6yjeef6yj.png" alt="cas hp">
+        </div>
+        <div class="slideshow">
+            <img class="slide active" src="id-11134201-23030-tn3c8rk05nov35.jpg" alt="sepatu">
+            <img class="slide" src="Gemini_Generated_Image_x2yyqix2yyqix2yy.png" alt="hp">
+            <img class="slide" src="Gemini_Generated_Image_aassnnaassnnaass.png" alt="kunci">
+        </div>
+    </div>
+    
+    <div id="contact" class="section">
+        <h2>kontak</h2>
+        <p>Email: kelvin.gymnastio09@gmail.com</p>
+        <p>Comm Link: (+62) 87239163190</p>
+        <p>Location: SMK TELKOM SIDOARJO, JAWA TIMUR </p>
+        <form>
+            <input type="text" placeholder="Your Alias" required>
+            <input type="email" placeholder="Neural Link" required>
+            <textarea placeholder="Transmission Message" required></textarea>
+            <button type="submit">kirim</button>
+        </form>
+    </div>
+    
+    <footer>
+        &copy; Lost And Found In School - Powered by Quantum AI & kelvin.
+    </footer>
+    
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+        
+        function filterTable() {
+            const input = document.getElementById('search');
+            const filter = input.value.toLowerCase();
+            const table = document.getElementById('items-table');
+            const rows = table.getElementsByTagName('tr');
+            
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                let match = false;
+                for (let j = 0; j < cells.length; j++) {
+                    if (cells[j].textContent.toLowerCase().includes(filter)) {
+                        match = true;
+                        break;
+                    }
+                }
+                rows[i].style.display = match ? '' : 'none';
+            }
+        }
+        
+        function validateForm() {
+            const email = document.getElementById('email').value;
+            const item = document.getElementById('item').value;
+            if (!email.includes('@') || item === '') {
+                alert('Error: Invalid neural link or item data!');
+                return false;
+            }
+            alert('Report transmitted successfully!');
+            return true;
+        }
+        
+        let slideIndex = 0;
+        function showSlides() {
+            const slides = document.getElementsByClassName('slide');
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = 'none';
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1; }
+            slides[slideIndex - 1].style.display = 'block';
+            setTimeout(showSlides, 4000); // Lebih lambat untuk efek futuristik
+        }
+        window.onload = showSlides;
+    </script>
+</body>
+</html>
